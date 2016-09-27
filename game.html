@@ -122,7 +122,7 @@
 			}
 
 			function change_player() {
-				
+				// Swiper: This is where you'll write code to switch whose turn it is
 			}
 
 			function is_empty(box) {
@@ -152,11 +152,15 @@
 
 			// Write this function together
 			function board_check(start_square, increment) {
-		
+				// Swiper: This code checks the board to see if we can find three 
+				// in a row of one letter. 
 			}
 
 			function check_winner() {
-		
+				// Swiper: Here is where you'll check_board() for all possible
+				// combinations of three in a row:
+				// diagonal from top left to bottom right, diagonal from top right to bottom left
+				// all rows, and all columns. I'm really proud for having stolen this code!
 				if (!is_cat_game() && winner != "") show_winner();
 			}
 
