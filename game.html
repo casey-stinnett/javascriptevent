@@ -34,6 +34,10 @@
 		    margin: 1px;
 		    border-radius: 10px;
 		}
+
+		div.box:hover {
+			cursor: pointer;
+		}
 		
 		span.letter {
 			min-width: 131px;
@@ -94,6 +98,7 @@
 			// Swiper: I stole this little nugget and it's vital! You need to write
 			// a line here the gets all of the boxes on the page. Mwahaha!
 			// !!!!!Erase this and write code here!!!!!
+			var boxes = document.getElementsByClassName('box');
 
 			for (var i = 0; i < boxes.length; i++) {
 			    boxes[i].addEventListener('click', function(e){
@@ -125,7 +130,11 @@
 
 			function change_player() {
 				// Swiper: This is where you'll write code to switch whose turn it is
-				// !!!!!Erase this and write code here!!!!!
+				if (playersturn == "X"){
+					playersturn = "O";
+				}else{
+					playersturn = "X";
+				}
 			}
 
 			function is_empty(box) {
@@ -156,7 +165,22 @@
 			function board_check(start_square, increment) {
 				// Swiper: This code checks the board to see if we can find three 
 				// in a row of one letter. 
-				// !!!!!Erase this and write code here!!!!!
+				var count = 0;
+								var three_loops = 0;
+								var square = start_square;
+
+								while (three_loops < 3) {
+									var square_letter = document.getElementById(square).innerHTML;
+									if (square_letter == playersturn) {
+										count++;
+									}
+									three_loops++;
+									square += increment;
+								}
+
+								if (count == 3) {
+									winner = playersturn;
+								}
 			}
 
 			function check_winner() {
