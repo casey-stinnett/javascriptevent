@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Eating Cookies</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="cookies-js.js"></script>
+		<script src="cookies.js"></script>
+		<link rel="stylesheet" href="cookies.css">
+		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<link rel="icon" href="favicon.ico">
+	</head>
+	<body>
+		<div class="main">
+			<blockquote id="directions" class="oval-speech-border">
+				<p>Drag a cookie to my mouth so I can eat it! And push ctrl + z to undo your guilt!</p>
+			</blockquote>
+			<div class="cookie-monster top">
+				<img src="cookie_monster.svg" alt="Cookie Monster">
+			</div>
+			<div class="cookie-monster bottom">
+				<img src="cookie_monster.svg" alt="Cookie Monster">
+				<div class="snap"></div>
+			</div>
+			<div class="whole-table">
+				<div class="table-wrapper">
+					<div class="table-surface">
+						<div class="table"></div>
+					</div>
+				</div>
+				<div class="table-edge">
+					<div class="table-leg"></div>
+					<div class="table-leg"></div>
+				</div>
+			
+				<div class="plates-wrapper">
+					<div class="css-plate">
+						<div class="cookie chocolate">
+						  <div class="chip first">
+						    <div class="top"></div>
+						  </div>
+						  <div class="chip second">
+						    <div class="top"></div>
+						  </div>
+						  <div class="chip third">
+						    <div class="top"></div>
+						  </div>
+						  <div class="chip fourth">
+						    <div class="top"></div>
+						  </div>
+						  <div class="chip fifth">
+						    <div class="top"></div>
+						  </div>
+						</div>
+					</div>
+					<div class="css-plate">
+						<div class="cookie sugar"></div>
+					</div>
+					<div class="css-plate">
+						<div class="cookie lemon"></div>
+					</div>
+				</div><!-- end plate-wrapper -->
+				<div class="cookie-count">
+					<div id="chocolate-count">Chocolate: <span></span></div>
+					<div id="sugar-count">Sugar: <span></span></div>
+					<div id="lemon-count">Lemon: <span></span></div>
+				</div>
+			</div><!-- end whole-table -->
+		</div>
+	</body>
+</html>
