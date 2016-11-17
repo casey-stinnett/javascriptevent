@@ -5,42 +5,63 @@ $(document).ready(function(){
 	var originalPosition = null;
 	var originalCss = {};
 
+	//A constructor for handling the cookies
+	function Cookies() {
+		this.cookies = {};//An object that will hold all cookies
+		// Gets the cookie value searched for or returns 0
+		this.get = function(name){
+			if (this.cookies[name]) {
+				return this.cookies[name];//Returns cookie value
+			}
+			return 0;
+		}
+		//Sets a cookies value
+		this.set = function(name, value){
+			this.cookies[name] = value;
+		}
+	}
+
+	var cookies = new Cookies();
+
+	//Set all cookies to 0 and update page counts
 	function resetCookies() {
-		Cookies.set('chocolate', 0);
-		Cookies.set('sugar', 0);
-		Cookies.set('lemon', 0);
+		cookies.set('chocolate', 0);
+		cookies.set('sugar', 0);
+		cookies.set('lemon', 0);
 		fillCounts();
 	}
 
+	//Updates page counts
 	function fillCounts() {
-		$('#chocolate-count').children('span').text(Cookies.get('chocolate'));
-		$('#sugar-count').children('span').text(Cookies.get('sugar'));
-		$('#lemon-count').children('span').text(Cookies.get('lemon'));
+		$('#chocolate-count').children('span').text(cookies.get('chocolate'));
+		$('#sugar-count').children('span').text(cookies.get('sugar'));
+		$('#lemon-count').children('span').text(cookies.get('lemon'));
 	}
-	fillCounts();
+	fillCounts();//Update page counts on page load
 
+	// Accepts the html element with the class of cookie, checks 
+	// which class it has, then finds that cookie and increments it by 1
 	function increaseCount($this) {
 		if ($this.hasClass('chocolate')) {
-			var current = parseInt(Cookies.get('chocolate'));
-			Cookies.set('chocolate', (isNaN(current) ? 1 : current+1));
+			cookies.set('chocolate', cookies.get('chocolate')+1);
 		}
 		if ($this.hasClass('sugar')) {
-			var current = parseInt(Cookies.get('sugar'));
-			Cookies.set('sugar', (isNaN(current) ? 1 : current+1));
+			cookies.set('sugar', cookies.get('sugar')+1);
 		}
 		if ($this.hasClass('lemon')) {
-			var current = parseInt(Cookies.get('lemon'));
-			Cookies.set('lemon', (isNaN(current) ? 1 : current+1));
+			cookies.set('lemon', cookies.get('lemon')+1);
 		}
-		fillCounts();
+		fillCounts(); //Update page counts
 	}
 
+
+//------------------ jQuery event listeners ------------------\\
 	var droppedInRightPlace = false;
-	$('.cookie').draggable({
+	$('.cookie').draggable({ //Makes the cookies draggable
 		snap: ".cookie-monster.bottom .snap",
 		snapMode: "inner",
 		revert: 'invalid',
-		start: function(){
+		start: function(){//As soon as the cookie is grabbed
 			//Gather original CSS so we can reset it once it's eaten
 			$originalPlate = $(this).parent();
 			originalTop = $(this).css('top');
@@ -52,7 +73,7 @@ $(document).ready(function(){
 				position: originalPosition
 			};
 		},
-		stop: function(){
+		stop: function(){//As soon as the cookie is released
 			if (droppedInRightPlace) {//Checks if dropped in right place
 				$(this).appendTo('.cookie-monster.bottom').css({
 					top: '0px',//Have to reset the top since dragging changed it
@@ -69,20 +90,16 @@ $(document).ready(function(){
 		}//end stop function
 	});
 
-	$('.snap').droppable({
+	$('.snap').droppable({//This is where the cookies will be dropped
 		drop: function(){
 			droppedInRightPlace = true;
 		}
 	});
 
-	$(document).on('keypress', function(e){
+	$(document).on('keypress', function(e){//Listens for a key press
 		console.log(e.which);
-		if (e.which === 26) {
+		if (e.which === 26) {//If ctrl+z is pushed, reset cookie count and update page
 			resetCookies();
 		}
-	});
-
-	$('.how-it-works').hover(function(){
-		$('#directions').toggleClass('hidden');
 	});
 });
